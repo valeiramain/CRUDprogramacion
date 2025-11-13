@@ -24,8 +24,6 @@ function App() {
         <Route path='/administrador/crear' element={<FormularioServicio></FormularioServicio>}/>
         <Route path='/administrador/editar' element={<FormularioServicio></FormularioServicio>}/>
         <Route path='*' element={<Error404></Error404>}></Route>
-
-        
       </Routes>
       <Footer></Footer>
     </BrowserRouter>

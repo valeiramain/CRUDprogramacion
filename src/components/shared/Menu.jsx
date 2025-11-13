@@ -11,22 +11,17 @@ const Menu = () => {
                         <i className="bi bi-code-slash"></i> CODE
                     </b>
                 </Navbar.Brand>
-
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
                         <NavLink className="nav-link" to="/">
                             Inicio
                         </NavLink>
-
                         <NavLink className="nav-link" to="/administrador">
                             Administrador
                         </NavLink>
-
-                        <Button className="nav-link">Logout</Button>
-
-                        <NavLink className="nav-link" to='/login'>Login</NavLink>
+                        <Button className="nav-link">LogOut</Button>
+                        <NavLink className="nav-link" to='/login'>LogIn</NavLink>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -15,8 +15,9 @@ function App() {
 
   return (
     <BrowserRouter>
-    <Menu></Menu>
+      <Menu></Menu>
       <Routes>
+        {/* element renderiza el componente */}
         <Route path='/' element={<Inicio></Inicio>}/>
         <Route path='/login' element={<Login></Login>}/>
         <Route path='/detalle' element={<DetalleServicio></DetalleServicio>}/>

@@ -1,21 +1,21 @@
 
-import { Row, Col } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import { Col, Button, Card } from "react-bootstrap";
 
 const CardServicio = () => {
     return (
         <Col>
             <Card>
-                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Img variant="top" src="https://images.pexels.com/photos/3944405/pexels-photo-3944405.jpeg" />
                 <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
+                    <Card.Title>Sitio web institucional (3–5 secciones)</Card.Title>
                     <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
+                        Desarrollo de un sitio web institucional de 3 a 5 secciones, moderno, responsive y optimizado, ideal para presentar información de una empresa o emprendimiento de forma profesional.
                     </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Card.Text>Precio: $ 300.000.-</Card.Text>
                 </Card.Body>
+                <Card.Footer className="text-center">
+                    <Button variant="primary">Ver Detalle</Button>
+                </Card.Footer>
             </Card>
         </Col>
     );

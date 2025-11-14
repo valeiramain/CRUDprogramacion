@@ -19,6 +19,7 @@ const Administrador = () => {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* recorrer con map */}
                     <ItemTabla></ItemTabla>
                 </tbody>
             </Table>

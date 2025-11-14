@@ -3,7 +3,7 @@
 const Error404 = () => {
     return (
         <div>
-            <p>error 404</p>
+            <p>Página no encontrada! error 404</p>
         </div>
     );
 };

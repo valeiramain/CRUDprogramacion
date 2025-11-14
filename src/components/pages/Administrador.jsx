@@ -8,7 +8,6 @@ const Administrador = () => {
             <div className='d-flex justify-content-between align-items-center'>
                 <h1 className='mb-3'>Administrar Servicios</h1>
                 <Button>Crear</Button>
-
             </div>
             <Table striped bordered hover>
                 <thead>

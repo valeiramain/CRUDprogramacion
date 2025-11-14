@@ -89,9 +89,9 @@ const FormularioServicio = () => {
                         })}
                     >
                         <option value="">Seleccione una opcion</option>
-                        <option value="Infusiones">Desarrollo Web</option>
-                        <option value="Batidos">Backend & API</option>
-                        <option value="dulce">Consultoría</option>
+                        <option value="Desarrollo Web">Desarrollo Web</option>
+                        <option value="Backend & API">Backend & API</option>
+                        <option value="Consultoría">Consultoría</option>
                     </Form.Select>
                     <Form.Text className="text-danger">
                         {errors.categoria?.message}
@@ -107,12 +107,12 @@ const FormularioServicio = () => {
                             required: "La descripción breve es un dato obligatorio",
                             minLength: {
                                 value: 5,
-                                message: "La descrición breve debe tener almenos 5 caracteres",
+                                message: "La descripción breve debe tener almenos 5 caracteres",
                             },
                             maxLength: {
                                 value: 250,
                                 message:
-                                    "La descrición breve debe tener como máximo 250 caracteres",
+                                    "La descripción breve debe tener como máximo 250 caracteres",
                             },
                         })}
                     />
@@ -132,12 +132,12 @@ const FormularioServicio = () => {
                             minLength: {
                                 value: 10,
                                 message:
-                                    "La descrición amplia debe tener almenos 10 caracteres",
+                                    "La descripción amplia debe tener almenos 10 caracteres",
                             },
                             maxLength: {
                                 value: 500,
                                 message:
-                                    "La descrición amplia debe tener como máximo 500 caracteres",
+                                    "La descripción amplia debe tener como máximo 500 caracteres",
                             },
                         })}
                     />

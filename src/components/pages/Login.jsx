@@ -2,17 +2,41 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import { useForm } from "react-hook-form"
+import { Navigate, useNavigate } from 'react-router';
+import Swal from 'sweetalert2'
 
 
-const Login = () => {
+const Login = ({setUsuarioLogueado}) => {
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm()
 
+    const navegacion = useNavigate()
+
     const onSubmit = (data) => {
         console.log(data)
+        if ((data.email === import.meta.env.VITE_EMAIL) && (data.password === import.meta.env.VITE_PASSWORD)){
+            // redireccionar a la pagina del administrador
+
+            // actualizar el state de la sesion del usuario
+            setUsuarioLogueado(true)
+            // mostrar un cartel de bienvenido. se puede usar setTimeOut
+            Swal.fire({
+                title: "Bienvenido Administrador!",
+                text: "Ingresando al Sistema!",
+                icon: "success"
+            });
+            navegacion('/administrador')
+        }else {
+            // mostrar cartel con credenciales incorrectas
+            Swal.fire({
+                title: "Ocurrió un error!",
+                text: "Credenciales incorrectas!",
+                icon: "error"
+            });
+        }
     }
     return (
         <main className='container my-4'>
@@ -49,16 +73,5 @@ const Login = () => {
         </main>
     );
 };
-
-//expresion regular del email
-//  /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
-
-//password
-// /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/
-
-//La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter especial.
-
-
-
 
 export default Login;

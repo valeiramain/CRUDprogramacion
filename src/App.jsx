@@ -13,35 +13,79 @@ import { useEffect, useState } from 'react'
 import ProtectorRutas from './components/routes/ProtectorRutas'
 
 function App() {
+  //login del usuario
   const usuarioSessionStorage = JSON.parse(sessionStorage.getItem('usuarioKey')) || false
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuarioSessionStorage)
+
+  //servicios
+  const serviciosLocalStorage = JSON.parse(localStorage.getItem('serviciosKey')) || []
+  const [servicios, setServicios] = useState(serviciosLocalStorage)
+
 
   useEffect(() => {
     // cuando cambia el login guardar el dato 
     sessionStorage.setItem('usuarioKey', JSON.stringify(usuarioLogueado))
   }, [usuarioLogueado])
 
+
+  useEffect(() => {
+    localStorage.setItem('serviciosKey', JSON.stringify(servicios))
+  }, [servicios])
+
+  // objeto que devuelve react-hook-form
+  const crearServicio = (nuevoServicio) => {
+    //crear ID y agregarlo al objeto
+    nuevoServicio.id = crypto.randomUUID()
+    // agrego el nuevo servicio al array que existe
+    setServicios([...servicios, nuevoServicio])
+  }
+
+  // objeto con los datos del servicio a editar
+  const editarServicio = (idServicio, servicioEditar) => {
+
+    // buscar en el array el objeto con el idServicio para actualizar valores
+    const serviciosEditados = servicios.map((itemServicio) => {
+      //buscar el objeto a editar
+      if (itemServicio.id === idServicio) {
+        return{
+          ...itemServicio,
+          ...servicioEditar
+        }
+      }
+      return itemServicio
+    })
+    //guardar el array con los datos modificados
+    setServicios(serviciosEditados)
+  }
+
+  //borrar servicio
+  const borrarServicio = (idServicio)=>{
+    const serviciosFiltrados = servicios.filter((itemServicio)=>itemServicio.id!==idServicio)
+    setServicios(serviciosFiltrados)
+  }
+
+
   return (
     <main>
-    <BrowserRouter>
-      <Menu usuarioLogueado={usuarioLogueado} setUsuarioLogueado={setUsuarioLogueado}></Menu>
-      <Routes>
-        {/* element renderiza el componente */}
-        <Route path='/' element={<Inicio></Inicio>} />
-        <Route path='/login' element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>} />
-        <Route path='/detalle' element={<DetalleServicio></DetalleServicio>} />
+      <BrowserRouter>
+        <Menu usuarioLogueado={usuarioLogueado} setUsuarioLogueado={setUsuarioLogueado}></Menu>
+        <Routes>
+          {/* element renderiza el componente */}
+          <Route path='/' element={<Inicio></Inicio>} />
+          <Route path='/login' element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>} />
+          <Route path='/detalle' element={<DetalleServicio></DetalleServicio>} />
 
-        {/* protector de rutas  */}
-        <Route path='/administrador' element={<ProtectorRutas usuarioLogueado={usuarioLogueado}></ProtectorRutas>}>
-          <Route index element={<Administrador></Administrador>} />
-          <Route path='crear' element={<FormularioServicio></FormularioServicio>} />
-          <Route path='editar' element={<FormularioServicio></FormularioServicio>} />
-        </Route>
+          {/* protector de rutas  */}
+          <Route path='/administrador' element={<ProtectorRutas usuarioLogueado={usuarioLogueado}></ProtectorRutas>}>
+            <Route index element={<Administrador></Administrador>} />
+            <Route path='crear' element={<FormularioServicio></FormularioServicio>} />
+            <Route path='editar' element={<FormularioServicio></FormularioServicio>} />
+          </Route>
 
-        <Route path='*' element={<Error404></Error404>}></Route>
-      </Routes>
-      <Footer></Footer>
-    </BrowserRouter>
+          <Route path='*' element={<Error404></Error404>}></Route>
+        </Routes>
+        <Footer></Footer>
+      </BrowserRouter>
     </main>
   )
 }

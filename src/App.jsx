@@ -21,6 +21,7 @@ function App() {
   },[usuarioLogueado])
 
   return (
+    <main>
     <BrowserRouter>
       <Menu usuarioLogueado={usuarioLogueado} setUsuarioLogueado={setUsuarioLogueado}></Menu>
       <Routes>
@@ -35,6 +36,7 @@ function App() {
       </Routes>
       <Footer></Footer>
     </BrowserRouter>
+    </main>
   )
 }
 

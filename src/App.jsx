@@ -10,27 +10,33 @@ import Error404 from './components/pages/Error404'
 import Menu from './components/shared/Menu'
 import Footer from './components/shared/Footer'
 import { useEffect, useState } from 'react'
+import ProtectorRutas from './components/routes/ProtectorRutas'
 
 function App() {
   const usuarioSessionStorage = JSON.parse(sessionStorage.getItem('usuarioKey')) || false
-  const [usuarioLogueado,setUsuarioLogueado] = useState(usuarioSessionStorage)
+  const [usuarioLogueado, setUsuarioLogueado] = useState(usuarioSessionStorage)
 
-  useEffect(()=>{
+  useEffect(() => {
     // cuando cambia el login guardar el dato 
-    sessionStorage.setItem('usuarioKey',JSON.stringify(usuarioLogueado))
-  },[usuarioLogueado])
+    sessionStorage.setItem('usuarioKey', JSON.stringify(usuarioLogueado))
+  }, [usuarioLogueado])
 
   return (
     <BrowserRouter>
       <Menu usuarioLogueado={usuarioLogueado} setUsuarioLogueado={setUsuarioLogueado}></Menu>
       <Routes>
         {/* element renderiza el componente */}
-        <Route path='/' element={<Inicio></Inicio>}/>
-        <Route path='/login' element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>}/>
-        <Route path='/detalle' element={<DetalleServicio></DetalleServicio>}/>
-        <Route path='/administrador' element={<Administrador></Administrador>}/>
-        <Route path='/administrador/crear' element={<FormularioServicio></FormularioServicio>}/>
-        <Route path='/administrador/editar' element={<FormularioServicio></FormularioServicio>}/>
+        <Route path='/' element={<Inicio></Inicio>} />
+        <Route path='/login' element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>} />
+        <Route path='/detalle' element={<DetalleServicio></DetalleServicio>} />
+
+        {/* protector de rutas  */}
+        <Route path='/administrador' element={<ProtectorRutas usuarioLogueado={usuarioLogueado}></ProtectorRutas>}>
+          <Route index element={<Administrador></Administrador>} />
+          <Route path='crear' element={<FormularioServicio></FormularioServicio>} />
+          <Route path='editar' element={<FormularioServicio></FormularioServicio>} />
+        </Route>
+
         <Route path='*' element={<Error404></Error404>}></Route>
       </Routes>
       <Footer></Footer>

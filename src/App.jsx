@@ -78,8 +78,8 @@ function App() {
           {/* protector de rutas  */}
           <Route path='/administrador' element={<ProtectorRutas usuarioLogueado={usuarioLogueado}></ProtectorRutas>}>
             <Route index element={<Administrador servicios={servicios}></Administrador>} />
-            <Route path='crear' element={<FormularioServicio></FormularioServicio>} />
-            <Route path='editar' element={<FormularioServicio></FormularioServicio>} />
+            <Route path='crear' element={<FormularioServicio titulo={'Crear Servicio'} crearServicio={crearServicio}></FormularioServicio>} />
+            <Route path='editar' element={<FormularioServicio titulo={'Editar Servicio'} editarServicio={editarServicio}></FormularioServicio>} />
           </Route>
 
           <Route path='*' element={<Error404></Error404>}></Route>

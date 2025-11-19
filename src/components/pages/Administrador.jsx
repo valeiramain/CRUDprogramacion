@@ -1,9 +1,9 @@
 
 import { Table } from 'react-bootstrap';
 import ItemTabla from '../services/ItemTabla';
-import {Link} from 'react-router'
+import { Link } from 'react-router'
 
-const Administrador = ({servicios}) => {
+const Administrador = ({ servicios }) => {
     return (
         <main className='container my-4'>
             <div className='d-flex justify-content-between align-items-center'>
@@ -21,7 +21,7 @@ const Administrador = ({servicios}) => {
                 </thead>
                 <tbody>
                     {
-                        servicios.map((servicio)=><ItemTabla key={servicio.id} servicio={servicio}></ItemTabla>)
+                        servicios.map((servicio,indice) => <ItemTabla key={servicio.id} servicio={servicio} fila={indice + 1}></ItemTabla>)
                     }
                 </tbody>
             </Table>

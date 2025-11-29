@@ -31,7 +31,7 @@ const ItemTabla = ({ servicio, fila, borrarServicio }) => {
             <td>{servicio.servicio}</td>
             <td>{servicio.precio}</td>
             <td className="text-center">
-                <Link className='btn btn-primary me-2' to={'/administrador/editar'}><i className="bi bi-pencil-fill"></i></Link>
+                <Link className='btn btn-warning me-2' to={`/administrador/editar/${servicio.id}`}><i className="bi bi-pencil-fill"></i></Link>
                 <Button variant='danger' onClick={eliminarServicio}><i className="bi bi-trash3-fill"></i></Button>
             </td>
         </tr>

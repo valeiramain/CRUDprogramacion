@@ -64,6 +64,12 @@ function App() {
     setServicios(serviciosFiltrados)
   }
 
+  // buscar servicio
+  const buscarServicio = (idServicio)=>{
+    const servicioEncontrado = servicios.find((item)=>item.id===idServicio)
+    return servicioEncontrado
+  }
+
 
   return (
     <main>
@@ -79,7 +85,7 @@ function App() {
           <Route path='/administrador' element={<ProtectorRutas usuarioLogueado={usuarioLogueado}></ProtectorRutas>}>
             <Route index element={<Administrador servicios={servicios} borrarServicio={borrarServicio}></Administrador>} />
             <Route path='crear' element={<FormularioServicio titulo={'Crear Servicio'} crearServicio={crearServicio}></FormularioServicio>} />
-            <Route path='editar' element={<FormularioServicio titulo={'Editar Servicio'} editarServicio={editarServicio}></FormularioServicio>} />
+            <Route path="editar/:id" element={<FormularioServicio titulo={'Editar Servicio'} editarServicio={editarServicio} buscarServicio={buscarServicio}></FormularioServicio>} />
           </Route>
 
           <Route path='*' element={<Error404></Error404>}></Route>

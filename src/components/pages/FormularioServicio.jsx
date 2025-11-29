@@ -1,15 +1,40 @@
+import { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router";
 import Swal from "sweetalert2";
 
-const FormularioServicio = ({ titulo, crearServicio, editarServicio }) => {
+const FormularioServicio = ({ titulo, crearServicio, editarServicio, buscarServicio }) => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-        reset
+        reset,
+        setValue
     } = useForm();
+
+    // id pasado en el path. id es un objeto que devuelve useParams
+    const {id} = useParams();
+    console.log(id)
+
+    useEffect(()=>{
+        // solo en montaje
+        // si estoy editando, busco el objeto para mostrar en el formulario
+        if (titulo === 'Editar Servicio') {
+            const servicioBuscado = buscarServicio(id)
+            console.log(servicioBuscado)
+            //react-hook-form agrega el value a un input con set value
+            setValue('servicio',servicioBuscado.servicio)
+            setValue('precio',servicioBuscado.precio)
+            setValue('imagen',servicioBuscado.imagen)
+            setValue('categoria',servicioBuscado.categoria)
+            setValue('descripcion_breve',servicioBuscado.descripcion_breve)
+            setValue('descripcion_amplia',servicioBuscado.descripcion_amplia)
+
+
+        }
+    }, [])
 
     const onSubmit = (data) => {
         console.log(data);
@@ -23,7 +48,16 @@ const FormularioServicio = ({ titulo, crearServicio, editarServicio }) => {
             });
             reset()
         } else {
-            // agrego logica para editar
+            //editar
+            editarServicio(id,data)
+            Swal.fire({
+                title: "Servicio Editado!",
+                text: `El Servicio ${data.servicio} fue editado correctamente.`,
+                icon: "success"
+            });
+
+            //volver a pagina del administrador
+
         }
     };
 

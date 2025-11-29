@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
+
 
 const FormularioServicio = ({ titulo, crearServicio, editarServicio, buscarServicio }) => {
     const {
@@ -17,6 +18,7 @@ const FormularioServicio = ({ titulo, crearServicio, editarServicio, buscarServi
     // id pasado en el path. id es un objeto que devuelve useParams
     const {id} = useParams();
     console.log(id)
+    const navegacion = useNavigate()
 
     useEffect(()=>{
         // solo en montaje
@@ -57,6 +59,8 @@ const FormularioServicio = ({ titulo, crearServicio, editarServicio, buscarServi
             });
 
             //volver a pagina del administrador
+            navegacion('/administrador')
+
 
         }
     };

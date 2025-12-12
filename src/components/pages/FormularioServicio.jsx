@@ -33,8 +33,6 @@ const FormularioServicio = ({ titulo, crearServicio, editarServicio, buscarServi
             setValue('categoria',servicioBuscado.categoria)
             setValue('descripcion_breve',servicioBuscado.descripcion_breve)
             setValue('descripcion_amplia',servicioBuscado.descripcion_amplia)
-
-
         }
     }, [])
 
@@ -142,7 +140,11 @@ const FormularioServicio = ({ titulo, crearServicio, editarServicio, buscarServi
                     >
                         <option value="">Seleccione una opcion</option>
                         <option value="Desarrollo Web">Desarrollo Web</option>
+                        <option value="Desarrollo Mobile">Desarrollo Mobile</option>
                         <option value="Backend & API">Backend & API</option>
+                        <option value="Frontend">Frontend</option>
+                        <option value="Atomatizacion">Automatización</option>
+                        <option value="Mantenimiento y Optimizacion">Mantenimiento y Optimización</option>
                         <option value="Consultoría">Consultoría</option>
                     </Form.Select>
                     <Form.Text className="text-danger">

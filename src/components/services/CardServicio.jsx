@@ -4,8 +4,8 @@ import { Col, Button, Card } from "react-bootstrap";
 const CardServicio = ({servicio}) => {
     return (
         <Col>
-            <Card>
-                <Card.Img variant="top" src={servicio.imagen}/>
+            <Card className="h-100">
+                <Card.Img variant="top" src={servicio.imagen} className="imgCard"/>
                 <Card.Body>
                     <Card.Title>{servicio.servicio}</Card.Title>
                     <Card.Text>

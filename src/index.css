@@ -10,8 +10,18 @@
   flex-grow: 1;
 }
 
-.imgCard{
+/* Contenedor con aspecto uniforme */
+.card-img-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;   /* 👈 Puedes cambiar a 4/3 o 1/1 */
+  overflow: hidden;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+/* Imagen responsive */
+.card-img-uniform {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* mantiene el mismo tamaño sin deformar */
+  object-fit: cover;       /* 👈 Fija la imagen sin deformarla */
 }

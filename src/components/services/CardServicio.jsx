@@ -5,7 +5,9 @@ const CardServicio = ({servicio}) => {
     return (
         <Col>
             <Card className="h-100">
-                <Card.Img variant="top" src={servicio.imagen} className="imgCard"/>
+                <div className="card-img-container">
+                <Card.Img variant="top" src={servicio.imagen} className="card-img-uniform"/>
+                </div>
                 <Card.Body>
                     <Card.Title>{servicio.servicio}</Card.Title>
                     <Card.Text>

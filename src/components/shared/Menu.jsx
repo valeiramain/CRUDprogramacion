@@ -12,10 +12,10 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
     }
 
     return (
-        <Navbar expand="lg" className="bg-body-tertiary">
+        <Navbar expand="lg" className="bg-body-secondary">
             <Container>
                 <Navbar.Brand>
-                    <b>
+                    <b className="text-warning">
                         <i className="bi bi-code-slash"></i> CODE
                     </b>
                 </Navbar.Brand>

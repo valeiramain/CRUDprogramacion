@@ -6,11 +6,11 @@ import { Link } from 'react-router'
 const Administrador = ({ servicios,borrarServicio }) => {
     return (
         <main className='container my-4'>
-            <div className='d-flex justify-content-between align-items-center'>
-                <h1 className='mb-3'>Administrar Servicios</h1>
+            <div className='d-flex justify-content-between align-items-center mb-4'>
+                <h1>Administrar Servicios</h1>
                 <Link className='btn btn-primary' to={'/administrador/crear'}>Crear</Link>
             </div>
-            <Table striped bordered hover>
+            <Table striped bordered hover responsive>
                 <thead>
                     <tr className='text-center'>
                         <th>#</th>

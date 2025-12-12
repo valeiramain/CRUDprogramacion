@@ -120,8 +120,8 @@ const FormularioServicio = ({ titulo, crearServicio, editarServicio, buscarServi
                         {...register("imagen", {
                             required: "La url de la imagen es un dato obligatorio",
                             pattern: {
-                                // value:
-                                //     /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?(\.(jpg|jpeg|png|webp))$/,
+                                value:
+                                    /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?(\.(jpg|jpeg|png|webp))$/,
                                 message:
                                     "La imagen debe ser una url de imagen valida terminada en (jpg|jpeg|png|webp)",
                             },

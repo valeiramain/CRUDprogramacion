@@ -28,6 +28,13 @@
 }
 
 
+/* imagen login */
+.img-login {
+  max-height: 300px;
+  width: 100%;
+  object-fit: contain;
+}
+
 
 /*====== diseño footer =========*/
 .footer {

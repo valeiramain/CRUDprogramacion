@@ -79,7 +79,7 @@ function App() {
           {/* element renderiza el componente */}
           <Route path='/' element={<Inicio servicios={servicios}></Inicio>} />
           <Route path='/login' element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>} />
-          <Route path='/detalle' element={<DetalleServicio></DetalleServicio>} />
+          <Route path='/detalle/:id' element={<DetalleServicio></DetalleServicio>} />
 
           {/* protector de rutas  */}
           <Route path='/administrador' element={<ProtectorRutas usuarioLogueado={usuarioLogueado}></ProtectorRutas>}>

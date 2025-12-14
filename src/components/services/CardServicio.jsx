@@ -1,5 +1,7 @@
 
 import { Col, Button, Card } from "react-bootstrap";
+import { Link } from "react-router";
+
 
 const CardServicio = ({servicio}) => {
     return (
@@ -16,7 +18,7 @@ const CardServicio = ({servicio}) => {
                     <Card.Text>Precio:$ {servicio.precio}</Card.Text>
                 </Card.Body>
                 <Card.Footer className="text-center">
-                    <Button variant="primary">Ver Detalle</Button>
+                    <Link className='btn btn-primary' to={`/detalle/${servicio.id}`}>Ver Detalle</Link>
                 </Card.Footer>
             </Card>
         </Col>

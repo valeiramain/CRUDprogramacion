@@ -14,7 +14,8 @@ const DetalleServicio = () => {
     const servicio = servicios.find(s => s.id === id);
 
     return (
-        <main>
+        <main className="container my-4">
+            <h1 className="mb-3">Detalle Servicio</h1>
 
             <Card className="shadow-lg border-0">
                 <Row className="g-0">

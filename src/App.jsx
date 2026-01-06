@@ -32,13 +32,7 @@ function App() {
     localStorage.setItem('serviciosKey', JSON.stringify(servicios))
   }, [servicios])
 
-  // objeto que devuelve react-hook-form
-  const crearServicio = (nuevoServicio) => {
-    //crear ID y agregarlo al objeto
-    nuevoServicio.id = crypto.randomUUID()
-    // agrego el nuevo servicio al array que existe
-    setServicios([...servicios, nuevoServicio])
-  }
+  
 
   // objeto con los datos del servicio a editar
   const editarServicio = (idServicio, servicioEditar) => {
@@ -84,7 +78,7 @@ function App() {
           {/* protector de rutas  */}
           <Route path='/administrador' element={<ProtectorRutas usuarioLogueado={usuarioLogueado}></ProtectorRutas>}>
             <Route index element={<Administrador servicios={servicios} borrarServicio={borrarServicio}></Administrador>} />
-            <Route path='crear' element={<FormularioServicio titulo={'Crear Servicio'} crearServicio={crearServicio}></FormularioServicio>} />
+            <Route path='crear' element={<FormularioServicio titulo={'Crear Servicio'}></FormularioServicio>} />
             <Route path="editar/:id" element={<FormularioServicio titulo={'Editar Servicio'} editarServicio={editarServicio} buscarServicio={buscarServicio}></FormularioServicio>} />
           </Route>
 

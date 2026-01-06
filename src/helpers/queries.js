@@ -10,7 +10,7 @@ export const listarServiciosApi = async () =>{
 }
 
 //POST (Crear)
-export const crearServiciossApi = async (servicio) =>{
+export const crearServicioApi = async (servicio) =>{
     try{
         const respuesta = await fetch(urlServicios,{
             method:'POST',

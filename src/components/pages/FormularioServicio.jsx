@@ -4,6 +4,8 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
+import { crearServicioApi } from "../../helpers/queries";
+
 
 
 const FormularioServicio = ({ titulo, crearServicio, editarServicio, buscarServicio }) => {
@@ -16,40 +18,49 @@ const FormularioServicio = ({ titulo, crearServicio, editarServicio, buscarServi
     } = useForm();
 
     // id pasado en el path. id es un objeto que devuelve useParams
-    const {id} = useParams();
+    const { id } = useParams();
     console.log(id)
     const navegacion = useNavigate()
 
-    useEffect(()=>{
+    useEffect(() => {
         // solo en montaje
         // si estoy editando, busco el objeto para mostrar en el formulario
         if (titulo === 'Editar Servicio') {
             const servicioBuscado = buscarServicio(id)
             console.log(servicioBuscado)
             //react-hook-form agrega el value a un input con set value
-            setValue('servicio',servicioBuscado.servicio)
-            setValue('precio',servicioBuscado.precio)
-            setValue('imagen',servicioBuscado.imagen)
-            setValue('categoria',servicioBuscado.categoria)
-            setValue('descripcion_breve',servicioBuscado.descripcion_breve)
-            setValue('descripcion_amplia',servicioBuscado.descripcion_amplia)
+            setValue('servicio', servicioBuscado.servicio)
+            setValue('precio', servicioBuscado.precio)
+            setValue('imagen', servicioBuscado.imagen)
+            setValue('categoria', servicioBuscado.categoria)
+            setValue('descripcion_breve', servicioBuscado.descripcion_breve)
+            setValue('descripcion_amplia', servicioBuscado.descripcion_amplia)
         }
     }, [])
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log(data);
         if (titulo === 'Crear Servicio') {
             //agreego la logica de creae
-            crearServicio(data)
-            Swal.fire({
-                title: "Servicio Creado!",
-                text: `El Servicio ${data.servicio} fue creado correctamente.`,
-                icon: "success"
-            });
-            reset()
+            // crearServicio(data)
+            const respuestaServicioCreado = await crearServicioApi(data)
+            if (respuestaServicioCreado && respuestaServicioCreado.status === 201) {
+                Swal.fire({
+                    title: "Servicio Creado!",
+                    text: `El Servicio ${data.servicio} fue creado correctamente.`,
+                    icon: "success"
+                });
+                reset();
+            } else {
+                Swal.fire({
+                    title: "Ocurrio un error al mostrar el servicio!",
+                    text: `El Servicio ${data.servicio} no fue creado.`,
+                    icon: "success"
+                });
+            }
         } else {
             //editar
-            editarServicio(id,data)
+            editarServicio(id, data)
             Swal.fire({
                 title: "Servicio Editado!",
                 text: `El Servicio ${data.servicio} fue editado correctamente.`,
@@ -58,7 +69,6 @@ const FormularioServicio = ({ titulo, crearServicio, editarServicio, buscarServi
 
             //volver a pagina del administrador
             navegacion('/administrador')
-
 
         }
     };

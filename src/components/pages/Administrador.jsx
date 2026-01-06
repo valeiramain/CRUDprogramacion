@@ -3,7 +3,7 @@ import { Table } from 'react-bootstrap';
 import ItemTabla from '../services/ItemTabla';
 import { Link } from 'react-router'
 import { useEffect, useState } from 'react';
-import { listarProductosApi } from '../../helpers/queries';
+import { listarServiciosApi } from '../../helpers/queries';
 
 const Administrador = () => {
     const [servicios, setServicios] = useState([])
@@ -14,7 +14,7 @@ const Administrador = () => {
     }, [])
 
     const cargarServicios = async () =>{
-        const respuestaServicios = await listarProductosApi();
+        const respuestaServicios = await listarServiciosApi();
         console.log(respuestaServicios);
         if (respuestaServicios && respuestaServicios.status===200){
             // extrae los datos del body de la respuesta
@@ -43,7 +43,7 @@ const Administrador = () => {
                 </thead>
                 <tbody>
                     {
-                        servicios.map((servicio) => <ItemTabla key={servicio._id} servicio={servicio} fila={indice + 1}></ItemTabla>)
+                        servicios.map((servicio,indice) => <ItemTabla key={servicio._id} servicio={servicio} fila={indice + 1}></ItemTabla>)
                     }
                 </tbody>
             </Table>

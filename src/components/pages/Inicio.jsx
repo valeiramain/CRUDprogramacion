@@ -1,7 +1,7 @@
 import { Row } from "react-bootstrap";
 import CardServicio from "../services/CardServicio";
 import { useEffect, useState } from "react";
-import { listarProductosApi } from '../../helpers/queries';
+import { listarServiciosApi } from '../../helpers/queries';
 
 const Inicio = () => {
     const [servicios, setServicios] = useState([])
@@ -12,7 +12,7 @@ const Inicio = () => {
     }, [])
 
     const cargarServicios = async () => {
-        const respuestaServicios = await listarProductosApi();
+        const respuestaServicios = await listarServiciosApi();
         console.log(respuestaServicios);
         if (respuestaServicios && respuestaServicios.status === 200) {
             // extrae los datos del body de la respuesta

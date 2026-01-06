@@ -12,7 +12,7 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
     }
 
     return (
-        <Navbar expand="lg" collapseOnSelect className="bg-body-secondary">
+        <Navbar expand="lg" className="bg-body-secondary">
             <Container>
                 <Navbar.Brand>
                     <b className="text-warning">

@@ -43,7 +43,7 @@ const Administrador = () => {
                 </thead>
                 <tbody>
                     {
-                        servicios.map((servicio, indice) => <ItemTabla key={servicio._id} servicio={servicio} fila={indice + 1}></ItemTabla>)
+                        servicios.map((servicio) => <ItemTabla key={servicio._id} servicio={servicio} fila={indice + 1}></ItemTabla>)
                     }
                 </tbody>
             </Table>

@@ -52,11 +52,6 @@ function App() {
     setServicios(serviciosEditados)
   }
 
-  //borrar servicio
-  const borrarServicio = (idServicio)=>{
-    const serviciosFiltrados = servicios.filter((itemServicio)=>itemServicio.id!==idServicio)
-    setServicios(serviciosFiltrados)
-  }
 
   // buscar servicio
   const buscarServicio = (idServicio)=>{
@@ -77,7 +72,7 @@ function App() {
 
           {/* protector de rutas  */}
           <Route path='/administrador' element={<ProtectorRutas usuarioLogueado={usuarioLogueado}></ProtectorRutas>}>
-            <Route index element={<Administrador servicios={servicios} borrarServicio={borrarServicio}></Administrador>} />
+            <Route index element={<Administrador></Administrador>} />
             <Route path='crear' element={<FormularioServicio titulo={'Crear Servicio'}></FormularioServicio>} />
             <Route path="editar/:id" element={<FormularioServicio titulo={'Editar Servicio'} editarServicio={editarServicio} buscarServicio={buscarServicio}></FormularioServicio>} />
           </Route>

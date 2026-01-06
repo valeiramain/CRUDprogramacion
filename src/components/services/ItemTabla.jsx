@@ -1,8 +1,11 @@
 import { Button } from "react-bootstrap";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
+import { borrarServicioApi } from "../../helpers/queries";
 
-const ItemTabla = ({ servicio, fila, borrarServicio }) => {
+
+const ItemTabla = ({ servicio, fila }) => {
+
     const eliminarServicio = () => {
         Swal.fire({
             title: "Está seguro que desea eliminar el Servicio?",
@@ -13,14 +16,22 @@ const ItemTabla = ({ servicio, fila, borrarServicio }) => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Borrar",
             cancelButtonText: "Cancelar"
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                borrarServicio(servicio.id)
-                Swal.fire({
-                    title: "Servicio Borrado!",
-                    text: `El servicio ${servicio.servicio} fue eliminado correctamente`,
-                    icon: "success"
-                });
+                const respuestaBorrarServicio = await borrarServicioApi(servicio._id)
+                if (respuestaBorrarServicio && respuestaBorrarServicio.status === 200) {
+                    Swal.fire({
+                        title: "Servicio Borrado!",
+                        text: `El servicio ${servicio.servicio} fue eliminado correctamente`,
+                        icon: "success"
+                    });
+                }else{
+                    Swal.fire({
+                        title: "ocurrió un error al intentar borrar un servicio!",
+                        text: `El servicio ${servicio.servicio} no se pudo borrar. Inténtelo més tarde.`,
+                        icon: "success"
+                    });
+                }
             }
         });
     }
@@ -28,7 +39,7 @@ const ItemTabla = ({ servicio, fila, borrarServicio }) => {
     const formatoPrecio = (precio) => {
         return `U$S ${precio.toLocaleString('en-ES', { minimumFractionDigits: 2 })}`;
     };
- 
+
 
 
 
@@ -38,7 +49,7 @@ const ItemTabla = ({ servicio, fila, borrarServicio }) => {
             <td>{servicio.servicio}</td>
             <td className="text-center">{formatoPrecio(servicio.precio)}</td>
             <td className="text-center">
-                <Link className='btn btn-warning btn-sm me-md-2' to={`/administrador/editar/${servicio.id}`}><i className="bi bi-pencil-fill"></i></Link>
+                <Link className='btn btn-warning btn-sm me-md-2' to={`/administrador/editar/${servicio._id}`}><i className="bi bi-pencil-fill"></i></Link>
                 <Button variant='danger' size="sm" onClick={eliminarServicio}><i className="bi bi-trash3-fill"></i></Button>
             </td>
         </tr>

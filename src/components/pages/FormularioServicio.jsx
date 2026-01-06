@@ -154,8 +154,8 @@ const FormularioServicio = ({ titulo, crearServicio, editarServicio, buscarServi
                         <option value="Backend y API">Backend & API</option>
                         <option value="Frontend">Frontend</option>
                         <option value="Atomatizacion">Automatización</option>
-                        <option value="Mantenimiento y Optimizacion">Mantenimiento y Optimización</option>
-                        <option value="Consultoría">Consultoría</option>
+                        <option value="Mantenimiento">Mantenimiento y Optimización</option>
+                        <option value="Consultoria">Consultoría</option>
                     </Form.Select>
                     <Form.Text className="text-danger">
                         {errors.categoria?.message}

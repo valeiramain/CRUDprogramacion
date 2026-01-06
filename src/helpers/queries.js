@@ -24,3 +24,15 @@ export const crearServicioApi = async (servicio) =>{
         console.error(error)
     }
 }
+
+// DELETE - borrar
+export const borrarServicioApi = async (id) =>{
+    try{
+        const respuesta = await fetch(urlServicios+`/${id}`,{
+            method:'DELETE'
+        })
+        return respuesta
+    }catch(error){
+        console.error(error)
+    }
+}

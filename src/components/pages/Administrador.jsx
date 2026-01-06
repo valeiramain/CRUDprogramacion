@@ -2,13 +2,28 @@
 import { Table } from 'react-bootstrap';
 import ItemTabla from '../services/ItemTabla';
 import { Link } from 'react-router'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { listarProductosApi } from '../../helpers/queries';
 
-const Administrador = ({ servicios, borrarServicio }) => {
+const Administrador = () => {
+    const [servicios, setServicios] = useState([])
 
     useEffect(() => {
-
+        // solo en montaje (usa []). Se sacan los [] cuando se necesitan en actualizacion
+        cargarServicios()
     }, [])
+
+    const cargarServicios = async () =>{
+        const respuestaServicios = await listarProductosApi();
+        console.log(respuestaServicios);
+        if (respuestaServicios && respuestaServicios.status===200){
+            // extrae los datos del body de la respuesta
+            const datos = await respuestaServicios.json()
+            setServicios(datos)
+        }else{
+            alert('ocurrio un error, no se pueden mostrar los productos en este momento')
+        }
+    }
 
     return (
         <main className='container my-4'>
@@ -28,7 +43,7 @@ const Administrador = ({ servicios, borrarServicio }) => {
                 </thead>
                 <tbody>
                     {
-                        servicios.map((servicio, indice) => <ItemTabla key={servicio.id} servicio={servicio} fila={indice + 1} borrarServicio={borrarServicio}></ItemTabla>)
+                        servicios.map((servicio, indice) => <ItemTabla key={servicio._id} servicio={servicio} fila={indice + 1}></ItemTabla>)
                     }
                 </tbody>
             </Table>

@@ -18,8 +18,8 @@ function App() {
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuarioSessionStorage)
 
   //servicios
-  const serviciosLocalStorage = JSON.parse(localStorage.getItem('serviciosKey')) || []
-  const [servicios, setServicios] = useState(serviciosLocalStorage)
+  // const serviciosLocalStorage = JSON.parse(localStorage.getItem('serviciosKey')) || []
+  const [servicios, setServicios] = useState([])
 
 
   useEffect(() => {
@@ -28,9 +28,9 @@ function App() {
   }, [usuarioLogueado])
 
 
-  useEffect(() => {
-    localStorage.setItem('serviciosKey', JSON.stringify(servicios))
-  }, [servicios])
+  // useEffect(() => {
+  //   localStorage.setItem('serviciosKey', JSON.stringify(servicios))
+  // }, [servicios])
 
   
 
@@ -74,7 +74,7 @@ function App() {
           <Route path='/administrador' element={<ProtectorRutas usuarioLogueado={usuarioLogueado}></ProtectorRutas>}>
             <Route index element={<Administrador></Administrador>} />
             <Route path='crear' element={<FormularioServicio titulo={'Crear Servicio'}></FormularioServicio>} />
-            <Route path="editar/:id" element={<FormularioServicio titulo={'Editar Servicio'} editarServicio={editarServicio} buscarServicio={buscarServicio}></FormularioServicio>} />
+            <Route path="editar/:id" element={<FormularioServicio titulo={'Editar Servicio'}></FormularioServicio>} />
           </Route>
 
           <Route path='*' element={<Error404></Error404>}></Route>

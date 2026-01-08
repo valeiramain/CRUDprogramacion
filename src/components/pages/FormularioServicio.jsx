@@ -8,7 +8,7 @@ import { crearServicioApi } from "../../helpers/queries";
 
 
 
-const FormularioServicio = ({ titulo, crearServicio, editarServicio, buscarServicio }) => {
+const FormularioServicio = ({ titulo }) => {
     const {
         register,
         handleSubmit,
@@ -26,7 +26,8 @@ const FormularioServicio = ({ titulo, crearServicio, editarServicio, buscarServi
         // solo en montaje
         // si estoy editando, busco el objeto para mostrar en el formulario
         if (titulo === 'Editar Servicio') {
-            const servicioBuscado = buscarServicio(id)
+            // const servicioBuscado = buscarServicio(id)
+
             console.log(servicioBuscado)
             //react-hook-form agrega el value a un input con set value
             setValue('servicio', servicioBuscado.servicio)

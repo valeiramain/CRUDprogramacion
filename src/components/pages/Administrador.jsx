@@ -11,7 +11,7 @@ const Administrador = () => {
     useEffect(() => {
         // solo en montaje (usa []). Se sacan los [] cuando se necesitan en actualizacion
         cargarServicios()
-    }, [servicios])
+    }, [])
 
     const cargarServicios = async () =>{
         const respuestaServicios = await listarServiciosApi();
@@ -42,7 +42,7 @@ const Administrador = () => {
                 </thead>
                 <tbody>
                     {
-                        servicios.map((servicio,indice) => <ItemTabla key={servicio._id} servicio={servicio} fila={indice + 1}></ItemTabla>)
+                        servicios.map((servicio,indice) => <ItemTabla key={servicio._id} servicio={servicio} fila={indice + 1} servicios={servicios} setServicios={setServicios}></ItemTabla>)
                     }
                 </tbody>
             </Table>

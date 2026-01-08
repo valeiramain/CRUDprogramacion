@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
-import { crearServicioApi } from "../../helpers/queries";
+import { buscarServicioApi, crearServicioApi, editarServicioApi } from "../../helpers/queries";
 
 
 
@@ -19,25 +19,30 @@ const FormularioServicio = ({ titulo }) => {
 
     // id pasado en el path. id es un objeto que devuelve useParams
     const { id } = useParams();
-    console.log(id)
     const navegacion = useNavigate()
 
     useEffect(() => {
         // solo en montaje
         // si estoy editando, busco el objeto para mostrar en el formulario
-        if (titulo === 'Editar Servicio') {
-            // const servicioBuscado = buscarServicio(id)
-
-            console.log(servicioBuscado)
-            //react-hook-form agrega el value a un input con set value
-            setValue('servicio', servicioBuscado.servicio)
-            setValue('precio', servicioBuscado.precio)
-            setValue('imagen', servicioBuscado.imagen)
-            setValue('categoria', servicioBuscado.categoria)
-            setValue('descripcion_breve', servicioBuscado.descripcion_breve)
-            setValue('descripcion_amplia', servicioBuscado.descripcion_amplia)
-        }
+        cargarDatos()
     }, [])
+
+    const cargarDatos = async () => {
+        if (titulo === 'Editar Servicio') {
+            const respuestaServicio = await buscarServicioApi(id);
+            if (respuestaServicio && respuestaServicio.status === 200) {
+                const servicioBuscado = await respuestaServicio.json()
+
+                //react-hook-form agrega el value a un input con set value
+                setValue('servicio', servicioBuscado.servicio)
+                setValue('precio', servicioBuscado.precio)
+                setValue('imagen', servicioBuscado.imagen)
+                setValue('categoria', servicioBuscado.categoria)
+                setValue('descripcion_breve', servicioBuscado.descripcion_breve)
+                setValue('descripcion_amplia', servicioBuscado.descripcion_amplia)
+            }
+        }
+    }
 
     const onSubmit = async (data) => {
         console.log(data);
@@ -61,16 +66,22 @@ const FormularioServicio = ({ titulo }) => {
             }
         } else {
             //editar
-            editarServicio(id, data)
-            Swal.fire({
-                title: "Servicio Editado!",
-                text: `El Servicio ${data.servicio} fue editado correctamente.`,
-                icon: "success"
-            });
-
-            //volver a pagina del administrador
-            navegacion('/administrador')
-
+            const respuestaEditarServicio = await editarServicioApi(data, id)
+            if (respuestaEditarServicio && respuestaEditarServicio.status === 200) {
+                Swal.fire({
+                    title: "Servicio Editado!",
+                    text: `El Servicio ${data.servicio} fue editado correctamente.`,
+                    icon: "success"
+                });
+                //volver a pagina del administrador
+                navegacion('/administrador')
+            } else {
+                Swal.fire({
+                    title: "Ocurrió un Error!",
+                    text: `El Servicio ${data.servicio} no puso ser editado. Inténtelo en unos minutos.`,
+                    icon: "error"
+                });
+            }
         }
     };
 

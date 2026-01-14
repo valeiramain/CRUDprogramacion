@@ -59,9 +59,9 @@ const FormularioServicio = ({ titulo }) => {
                 reset();
             } else {
                 Swal.fire({
-                    title: "Ocurrio un error al mostrar el servicio!",
+                    title: "Ocurrio un error al Crear el servicio!",
                     text: `El Servicio ${data.servicio} no fue creado.`,
-                    icon: "success"
+                    icon: "error"
                 });
             }
         } else {
@@ -143,9 +143,9 @@ const FormularioServicio = ({ titulo }) => {
                             required: "La url de la imagen es un dato obligatorio",
                             pattern: {
                                 value:
-                                    /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?(\.(jpg|jpeg|png|webp))$/,
+                                    /^https:\/\/.+\.(jpg|jpeg|png|gif|webp|bmp|svg)$/,
                                 message:
-                                    "La imagen debe ser una url de imagen valida terminada en (jpg|jpeg|png|webp)",
+                                    "La imagen debe ser una url de imagen valida terminada en (jpg|jpeg|png|gif|webp|bmp|svg)",
                             },
                         })}
                     />

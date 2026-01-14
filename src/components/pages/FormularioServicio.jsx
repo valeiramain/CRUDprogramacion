@@ -160,14 +160,12 @@ const FormularioServicio = ({ titulo }) => {
                             required: "Debe seleccionar una categoria",
                         })}
                     >
+                    
                         <option value="">Seleccione una opcion</option>
                         <option value="Desarrollo Web">Desarrollo Web</option>
                         <option value="Desarrollo Mobile">Desarrollo Mobile</option>
-                        <option value="Backend y API">Backend & API</option>
-                        <option value="Frontend">Frontend</option>
-                        <option value="Atomatizacion">Automatización</option>
-                        <option value="Mantenimiento">Mantenimiento y Optimización</option>
-                        <option value="Consultoria">Consultoría</option>
+                        <option value="Backend y API">Backend y API</option>
+                        <option value="Otros">Otros</option>
                     </Form.Select>
                     <Form.Text className="text-danger">
                         {errors.categoria?.message}

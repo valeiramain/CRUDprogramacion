@@ -45,7 +45,6 @@ const FormularioServicio = ({ titulo }) => {
     }
 
     const onSubmit = async (data) => {
-        console.log(data);
         if (titulo === 'Crear Servicio') {
             //agreego la logica de creae
             // crearServicio(data)

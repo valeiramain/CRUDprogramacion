@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router";
 
 
-const ProtectorRutas = (usuarioLogueado) => {
+const ProtectorRutas = ({usuarioLogueado}) => {
     // pregunto si NO estoy logueado
     // if(!usuarioLogueado.token){
     if(!usuarioLogueado.nombre){

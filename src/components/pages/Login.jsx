@@ -21,13 +21,13 @@ const Login = ({ setUsuarioLogueado }) => {
     if (respuesta && respuesta.status === 200) {
       //guardar el usuario logueado y el token como objeto en el state
       const usuarioLogueado = await respuesta.json();
-      //guardo un objeto con la respuesta en el state en el session storage
+      //guardo el usuario logueado como un objeto con la respuesta en el state en el session storage
       setUsuarioLogueado({
         nombre: usuarioLogueado.nombre,
         token: usuarioLogueado.token,
       });
 
-      Swal.fire({
+     Swal.fire({
         title: `Bienvenido ${usuarioLogueado.nombre}!`,
         text: "Ingresando al Sistema!",
         icon: "success",

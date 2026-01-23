@@ -18,7 +18,7 @@ function App() {
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuarioSessionStorage)
 
   //servicios
-  // const serviciosLocalStorage = JSON.parse(localStorage.getItem('serviciosKey')) || []
+  const serviciosLocalStorage = JSON.parse(localStorage.getItem('serviciosKey')) || []
   const [servicios, setServicios] = useState([])
 
 
@@ -28,9 +28,9 @@ function App() {
   }, [usuarioLogueado])
 
 
-  // useEffect(() => {
-  //   localStorage.setItem('serviciosKey', JSON.stringify(servicios))
-  // }, [servicios])
+  useEffect(() => {
+    localStorage.setItem('serviciosKey', JSON.stringify(servicios))
+  }, [servicios])
 
   
 
@@ -66,7 +66,8 @@ function App() {
         <Menu usuarioLogueado={usuarioLogueado} setUsuarioLogueado={setUsuarioLogueado}></Menu>
         <Routes>
           {/* element renderiza el componente */}
-          <Route path='/' element={<Inicio servicios={servicios}></Inicio>} />
+          {/* <Route path='/' element={<Inicio servicios={servicios}></Inicio>} /> */}
+          <Route path='/' element={<Inicio ></Inicio>} />
           <Route path='/login' element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>} />
           <Route path='/detalle/:id' element={<DetalleServicio></DetalleServicio>} />
 

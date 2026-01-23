@@ -7,7 +7,7 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
 
     const navegacion = useNavigate()
     const logout = ()=>{
-        setUsuarioLogueado(false)
+        setUsuarioLogueado({})
         navegacion('/')
     }
 
@@ -26,7 +26,7 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
                             Inicio
                         </NavLink>
                         {
-                            usuarioLogueado ? <>
+                            usuarioLogueado.nombre ? <>
                                 <NavLink className="nav-link" to="/administrador">
                                     Administrador
                                 </NavLink>

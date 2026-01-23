@@ -3,10 +3,11 @@ import { Navigate, Outlet } from "react-router";
 
 const ProtectorRutas = (usuarioLogueado) => {
     // pregunto si NO estoy logueado
-    if(!usuarioLogueado){
+    // if(!usuarioLogueado.token){
+    if(!usuarioLogueado.nombre){
         return <Navigate to={'/login'}></Navigate>
     }
-    // si soy enfectivamente el admin
+    // si soy efectivamente el admin
     return <Outlet></Outlet>
 };
 

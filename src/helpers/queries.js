@@ -1,4 +1,5 @@
 const urlServicios = import.meta.env.VITE_SERVICIO;
+const urlUsuarios = import.meta.env.VITE_USUARIO;
 
 export const listarServiciosApi = async () =>{
     try{
@@ -15,7 +16,8 @@ export const crearServicioApi = async (servicio) =>{
         const respuesta = await fetch(urlServicios,{
             method:'POST',
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization':`Bearer ${JSON.parse(sessionStorage.getItem('usuarioKey')).token}`
             },
             body: JSON.stringify(servicio)
         })
@@ -29,7 +31,8 @@ export const crearServicioApi = async (servicio) =>{
 export const borrarServicioApi = async (id) =>{
     try{
         const respuesta = await fetch(urlServicios+`/${id}`,{
-            method:'DELETE'
+            method:'DELETE',
+                'Authorization':`Bearer ${JSON.parse(sessionStorage.getItem('usuarioKey')).token}`
         })
         return respuesta
     }catch(error){
@@ -59,10 +62,29 @@ export const editarServicioApi = async (servicio,id) =>{
         const respuesta = await fetch(urlServicios+`/${id}`,{
             method:'PUT',
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization':`Bearer ${JSON.parse(sessionStorage.getItem('usuarioKey')).token}`
             },
             body: JSON.stringify(servicio)
         })
+        return respuesta
+    }catch(error){
+        console.error(error)
+    }
+}
+
+//LOGIN USUARIO: use usa POST xq se envian datos
+export const login = async (usuario) =>{
+    try{
+        const respuesta = await fetch(urlUsuarios+'/login',{
+            method:'POST',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            //mando email y password en el body
+            body: JSON.stringify(usuario)
+        })
+        //la respuesta tiene nombre usuario y token
         return respuesta
     }catch(error){
         console.error(error)

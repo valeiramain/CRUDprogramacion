@@ -14,7 +14,7 @@ import ProtectorRutas from './components/routes/ProtectorRutas'
 
 function App() {
   //login del usuario
-  const usuarioSessionStorage = JSON.parse(sessionStorage.getItem('usuarioKey')) || false
+  const usuarioSessionStorage = JSON.parse(sessionStorage.getItem('usuarioKey')) || {};
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuarioSessionStorage)
 
   //servicios

@@ -18,8 +18,8 @@ function App() {
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuarioSessionStorage)
 
   //servicios
-  const serviciosLocalStorage = JSON.parse(localStorage.getItem('serviciosKey')) || []
-  const [servicios, setServicios] = useState([])
+  // const serviciosLocalStorage = JSON.parse(localStorage.getItem('serviciosKey')) || []
+  // const [servicios, setServicios] = useState([])
 
 
   useEffect(() => {
@@ -28,9 +28,9 @@ function App() {
   }, [usuarioLogueado])
 
 
-  useEffect(() => {
-    localStorage.setItem('serviciosKey', JSON.stringify(servicios))
-  }, [servicios])
+  // useEffect(() => {
+  //   localStorage.setItem('serviciosKey', JSON.stringify(servicios))
+  // }, [servicios])
 
   
 

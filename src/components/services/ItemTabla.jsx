@@ -32,7 +32,7 @@ const ItemTabla = ({ servicio, fila, servicios, setServicios }) => {
           Swal.fire({
             title: "ocurrió un error al intentar borrar un servicio!",
             text: `El servicio ${servicio.servicio} no se pudo borrar. Inténtelo més tarde.`,
-            icon: "success",
+            icon: "error",
           });
         }
       }

@@ -7,6 +7,7 @@ const ProtectorRutas = ({usuarioLogueado}) => {
     if(!usuarioLogueado.nombre){
         return <Navigate to={'/login'}></Navigate>
     }
+    // deberia preguntar por el rol de usuario para redireccionar la ruta segun corresponda
     // si soy efectivamente el admin
     return <Outlet></Outlet>
 };

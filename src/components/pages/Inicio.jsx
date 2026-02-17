@@ -13,7 +13,7 @@ const Inicio = () => {
 
     const cargarServicios = async () => {
         const respuestaServicios = await listarServiciosApi();
-        console.log(respuestaServicios);
+        // console.log(respuestaServicios);
         if (respuestaServicios && respuestaServicios.status === 200) {
             // extrae los datos del body de la respuesta
             const datos = await respuestaServicios.json()

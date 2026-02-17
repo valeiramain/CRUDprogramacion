@@ -17,7 +17,7 @@ export const crearServicioApi = async (servicio) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${JSON.parse(sessionStorage.getItem("usuarioKey")).token}`,
+        Authorization: `Bearer ${JSON.parse(sessionStorage.getItem("usuarioKey")).token}`
       },
       body: JSON.stringify(servicio),
     });
@@ -32,7 +32,9 @@ export const borrarServicioApi = async (id) => {
   try {
     const respuesta = await fetch(urlServicios + `/${id}`, {
       method: "DELETE",
-      Authorization: `Bearer ${JSON.parse(sessionStorage.getItem("usuarioKey")).token}`,
+      headers: {
+        Authorization: `Bearer ${JSON.parse(sessionStorage.getItem("usuarioKey")).token}`
+      }
     });
     return respuesta;
   } catch (error) {
@@ -57,7 +59,7 @@ export const editarServicioApi = async (servicio, id) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${JSON.parse(sessionStorage.getItem("usuarioKey")).token}`,
+        Authorization: `Bearer ${JSON.parse(sessionStorage.getItem("usuarioKey")).token}`
       },
       body: JSON.stringify(servicio),
     });

@@ -45,7 +45,7 @@ export const borrarServicioApi = async (id) => {
 // BUSCAR por ID
 export const buscarServicioApi = async (id) => {
   try {
-    const respuesta = await fetch(urlServicios + `/${id}`);
+    const respuesta = await fetch(urlServicios+ `/${id}`);
     return respuesta;
   } catch (error) {
     console.error(error);

@@ -18,7 +18,7 @@ const CardServicio = ({servicio}) => {
                     <Card.Text>Precio:$ {servicio.precio}</Card.Text>
                 </Card.Body>
                 <Card.Footer className="text-center">
-                    <Link className='btn btn-primary' to={`/detalle/${servicio.id}`}>Ver Detalle</Link>
+                    <Link className='btn btn-primary' to={`/detalle/${servicio._id}`}>Ver Detalle</Link>
                 </Card.Footer>
             </Card>
         </Col>
